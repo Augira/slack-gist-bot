@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Augira/slack-gist-bot#readme",
   "dependencies": {
-    "botkit": "^4.10.0"
+    "botkit": "^4.10.0",
+    "gists": "^2.0.0"
   }
 }
