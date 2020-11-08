@@ -4,3 +4,4 @@ terraform.tfvars
 dist
 .DS_Store
 terraform.tfstate.backup
+.idea
