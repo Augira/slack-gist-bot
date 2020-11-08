@@ -27,6 +27,12 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
-## Help note
-example:
-	npm run build
+## Build the serverless bundle
+build:
+	mkdir -p dist
+	cd src && zip -q -r build.zip *
+	mv src/build.zip dist/build.zip
+
+## Deploy it
+deploy-tf:
+	cd deploy/terraform && terraform apply
