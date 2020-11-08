@@ -6,7 +6,7 @@ exports.handler = function (event, context, callback) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: '{"text": "Thanks"}',
+    body: '{"text": "Thanks!"}',
   };
   callback(null, response);
 };
