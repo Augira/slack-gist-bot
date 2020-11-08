@@ -8,16 +8,24 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.0.0
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1.4.3
   lint:
     name: Lint
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-    - name: Setup node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.0.0
-    - name: Install Dependencies
-      uses: bahmutov/npm-install@v1.4.3
-    - name: Lint
-      run: npm run lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.0.0
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1.4.3
+      - name: Lint
+        run: npm run lint
