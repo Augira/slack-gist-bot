@@ -1,5 +1,25 @@
 # Stubbed out (not working)
 
+locals {
+  build = "../../dist/build.zip"
+}
+
+data "external" "function_build" {
+  program = ["bash", "-c", <<EOT
+# Wrong: don't return an absolute path!
+(npm run build) >&2 && echo "{\"dest\": \"dist\"}"
+EOT
+  ]
+
+  working_dir = "../../"
+}
+
+data "archive_file" "package" {
+  type = "zip"
+  source_file = "${data.external.function_build.working_dir}/${data.external.function_build.result.dest}/index.js"
+  output_path = local.build
+}
+
 resource "aws_lambda_function" "send_to_gist" {
   function_name    = "send_to_gist"
   handler          = "index.handler"
@@ -8,8 +28,8 @@ resource "aws_lambda_function" "send_to_gist" {
   # provider         = var.AWS_REGION
   memory_size      = "128"
   timeout          = 1
-  filename         = "../../dist/build.zip"
-  source_code_hash = filebase64sha256("../../dist/build.zip")
+  filename         = local.build
+  source_code_hash = data.archive_file.package.output_base64sha256
 
   role = aws_iam_role.lambda_exec.arn
 }
