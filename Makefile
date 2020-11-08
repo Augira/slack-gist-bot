@@ -27,12 +27,6 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
-## Build the serverless bundle
-build:
-	mkdir -p dist
-	cd src && zip -q -r build.zip *
-	mv src/build.zip dist/build.zip
-
-## Deploy it
+## Deploy via terraform
 deploy-tf:
 	cd deploy/terraform && terraform apply
