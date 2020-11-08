@@ -1,7 +1,5 @@
-'use strict';
-
-exports.handler = function (event, context, callback) {
-  var response = {
+exports.handler = (event, context, callback) => {
+  const response = {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json',
