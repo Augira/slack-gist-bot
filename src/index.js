@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 exports.handler = function (event, context, callback) {
   var response = {
@@ -7,6 +7,6 @@ exports.handler = function (event, context, callback) {
       'Content-Type': 'application/json',
     },
     body: '{"text": "Thanks"}',
-  }
-  callback(null, response)
-}
+  };
+  callback(null, response);
+};
