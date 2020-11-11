@@ -7,7 +7,7 @@ locals {
 data "external" "function_build" {
   program = ["bash", "-c", <<EOT
 # Wrong: don't return an absolute path!
-(npm run build) >&2 && echo "{\"dest\": \"dist\"}"
+(npm i && npm run build) >&2 && echo "{\"dest\": \"dist\"}"
 EOT
   ]
 
